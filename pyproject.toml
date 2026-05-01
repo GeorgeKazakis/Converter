@@ -1,0 +1,17 @@
+[project]
+name = "fek-to-md"
+version = "0.1.0"
+description = "CLI for converting Greek FEK PDF files to Markdown for custom GPT knowledge bases."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "PyMuPDF>=1.24.0",
+]
+
+[project.scripts]
+fek-to-md = "fek_to_md.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
