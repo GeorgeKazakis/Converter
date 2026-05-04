@@ -7,6 +7,12 @@ import sys
 from .converter import convert_pdf_to_markdown
 
 
+def configure_stdio() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(errors="backslashreplace")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="fek-to-md",
@@ -110,6 +116,7 @@ def convert_one(
 
 
 def run(argv: list[str] | None = None) -> int:
+    configure_stdio()
     parser = build_parser()
     args = parser.parse_args(argv)
 
@@ -145,4 +152,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
